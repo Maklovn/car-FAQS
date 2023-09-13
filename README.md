@@ -12,3 +12,6 @@ To run this streamlit app on your local machine, follow the steps below:
 
 '''bash 
 git clone https://github.com/Maklovn/car-FAQS.git
+
+# #Render url below 
+https://vehicle-specs.onrender.com/
