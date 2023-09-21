@@ -7,11 +7,15 @@ import plotly.express as px
 st.title('Vehicle Data Analysis')
 
 # Load the cleaned data from the CSV file under df
-df = pd.read_csv('vehicles_us.csv')
+df = pd.read_csv('cleaned_dataset.csv')
 
 # Display the dataset or a sample of it
 st.subheader('Dataset Preview')
-st.write(df.head())  # Display the first few rows of the dataset
+st.write(df.head())  # Display the first few rows of the dataset from the 'cleaned_dataset.csv' file
+
+# Group by 'model_year' and fill missing values with median
+df_grouped_by_year = df.groupby('model_year').transform(lambda x: x.fillna(x.median(
+)))
 
 # Checkbox to toggle the visibility of the histogram
 show_histogram_price = st.checkbox('Show price Histogram')
@@ -46,10 +50,12 @@ show_scatter_plot = st.checkbox('Show Scatter Plot')
 # Conditional rendering of the scatter plot
 if show_scatter_plot:
     # Create a scatter plot
-    fig_scatter = px.scatter(df, x='model', y='model_year', color='condition', title='Make, year and condition')
+    fig_scatter = px.scatter(df_grouped_by_year, x='model', y='model_year', color='condition', title='Make, year and condition')
 
     # Display the scatter plot 
     st.subheader('Scatter Plot')
     st.plotly_chart(fig_scatter, use_container_width=True)
+
+
 
 
