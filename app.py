@@ -49,8 +49,8 @@ show_scatter_plot = st.checkbox('Show Scatter Plot')
 
 # Conditional rendering of the scatter plot
 if show_scatter_plot:
-    # Create a scatter plot
-    fig_scatter = px.scatter(df_grouped_by_year, x='model', y='model_year', color='condition', title='Make, year and condition')
+    # Create a scatter plot using 'model' and 'model_year' columns from 'df'
+    fig_scatter = px.scatter(df, x='model', y='model_year', color='condition', title='Make, year and condition')
 
     # Display the scatter plot 
     st.subheader('Scatter Plot')
